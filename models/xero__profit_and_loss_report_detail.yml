@@ -1,0 +1,30 @@
+semantic_models:
+  - name: profit_and_loss
+    defaults:
+      agg_time_dimension: date_month
+    description: |
+      Profit and loss table.
+    model: ref('xero__profit_and_loss_report_detail')
+    entities:
+      - name: profit_and_loss_id
+        type: primary
+    dimensions:   
+      - name: date_month
+        type: time
+        type_params:
+          time_granularity: day
+    measures:
+      - name: net_amount
+        description: net gl amount
+        agg: sum
+        expr: amount
+
+metrics: 
+  # Simple type metrics
+  - name: "net_amount"
+    description: "Total net amount"
+    type: simple
+    label: "total_net_amount"
+    type_params:
+      measure:
+        name: net_amount
