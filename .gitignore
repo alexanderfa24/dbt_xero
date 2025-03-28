@@ -7,3 +7,4 @@ dbt_packages/
 env/
 package-lock.yml
 dbt-cloud-env/
+profiles.yml
